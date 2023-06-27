@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <sstream>
 #include <set>
-#include <onsem/common/utility/lexical_cast.hpp>
-#include <onsem/common/utility/string.hpp>
+#include <xmltoflatlistconverter/lexical_cast.hpp>
+#include <xmltoflatlistconverter/string.hpp>
 
 namespace myu
 {
@@ -30,7 +30,7 @@ void _toLowerStr(std::string& pText)
 
 void _removeNewLinesStr(std::string& pText)
 {
-  onsem::mystd::replace_all(pText, "\r\n", "");
+  replace_all(pText, "\r\n", "");
 }
 
 bool _hasOnlySpaces(const std::string& pStr)
@@ -107,7 +107,7 @@ Beacon::Beacon(const std::string& pText,
             const std::string textLengthStr = removeSurroundingQuotationMarks(attrValue);
             try
             {
-              size = onsem::mystd::lexical_cast<std::size_t>(textLengthStr);
+              size = lexical_cast<std::size_t>(textLengthStr);
             } catch (...) {
               size = 0;
             }
@@ -221,7 +221,7 @@ Text::Text(const std::string& pText,
   : XmlElt(XmlEltType::TEXT),
     txt(pText.substr(pBegin, pEnd - pBegin))
 {
-  onsem::mystd::replace_all(txt, "\r\n", " ");
+  replace_all(txt, "\r\n", " ");
 }
 
 
@@ -415,7 +415,7 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
           try
           {
             auto widthStr = removeSurroundingQuotationMarks(itWidth->second);
-            width = onsem::mystd::lexical_cast<std::size_t>(widthStr);
+            width = lexical_cast<std::size_t>(widthStr);
             if (width < pMinWidthToConsider)
               continue;
           }
@@ -430,7 +430,7 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
             try
             {
               auto heightStr = removeSurroundingQuotationMarks(itHeight->second);
-              height = onsem::mystd::lexical_cast<std::size_t>(heightStr);
+              height = lexical_cast<std::size_t>(heightStr);
             }
             catch (...)
             {

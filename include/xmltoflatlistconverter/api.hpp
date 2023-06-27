@@ -4,9 +4,9 @@
 #include "macro.hpp"
 
 #if !defined(SWIG) && defined(xmltoflatlistconverter_EXPORTS)
-# define XMLTOFLATLISTCONVERTER_API SEMANTIC_LIB_API_EXPORTS(xmltoflatlistconverter)
+# define XMLTOFLATLISTCONVERTER_API XMLTOFLATLISTCONVERTER_LIB_API_EXPORTS(xmltoflatlistconverter)
 #elif !defined(SWIG)
-# define XMLTOFLATLISTCONVERTER_API SEMANTIC_LIB_API(xmltoflatlistconverter)
+# define XMLTOFLATLISTCONVERTER_API XMLTOFLATLISTCONVERTER_LIB_API(xmltoflatlistconverter)
 #else
 # define XMLTOFLATLISTCONVERTER_API
 #endif
