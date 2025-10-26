@@ -451,7 +451,7 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
               styleStr += "position: absolute; height:100%; width:100%;\"";
 
               // Update "referrerpolicy" attribute
-              currBeacon.attributes[referrerpolicyAttrName] = "referrerpolicy=\"strict-origin-when-cross-origin\"";
+              currBeacon.attributes[referrerpolicyAttrName] = "\"strict-origin-when-cross-origin\"";
 
               // Fit size
               float ratio = (height * 100) / static_cast<float>(width);
