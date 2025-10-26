@@ -400,6 +400,7 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
                                      const std::string& pClassToControlWidth)
 {
   static const std::string styleAttrName = "style";
+  static const std::string referrerpolicyAttrName = "referrerpolicy";
   for (auto it = pListOfElts.begin(); it != pListOfElts.end(); ++it)
   {
     auto& currElt = *it;
@@ -441,6 +442,7 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
             auto itEndOfBeacon = getEndingBeaconFromIts(it, itEnd);
             if (itEndOfBeacon != itEnd)
             {
+              // Update "style" attribute
               auto& styleStr = currBeacon.attributes[styleAttrName];
               auto styleAttrWithoutQuotation = currBeacon.getAttributeValueWithoutSurroundingQuotationMarks(styleAttrName);
               styleStr = "\"";
@@ -448,6 +450,10 @@ void setAutoAdjustWidthOfBigElements(std::list<std::unique_ptr<XmlElt>>& pListOf
                 styleStr += styleAttrWithoutQuotation + " ";
               styleStr += "position: absolute; height:100%; width:100%;\"";
 
+              // Update "referrerpolicy" attribute
+              currBeacon.attributes[referrerpolicyAttrName] = "referrerpolicy=\"strict-origin-when-cross-origin\"";
+
+              // Fit size
               float ratio = (height * 100) / static_cast<float>(width);
               std::stringstream rationSS;
               rationSS << ratio;
